@@ -3,6 +3,7 @@ plugins {
   id 'kotlin-android'
   id 'kotlin-kapt'
   id 'org.jetbrains.kotlin.plugin.serialization'
+  id 'com.google.devtools.ksp'
 }
 
 kotlin {
@@ -132,7 +133,19 @@ dependencies {
   // JSON serialization/deserialization
   implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1'
 
+  // Moshi
+  implementation 'com.squareup.moshi:moshi-kotlin:1.15.2'
+  implementation 'com.squareup.moshi:moshi-adapters:1.15.2'
+  ksp 'com.squareup.moshi:moshi-kotlin-codegen:1.15.2'
+
   testImplementation 'junit:junit:4.13.2'
+  testImplementation 'org.json:json:20210307'
+
+  androidTestImplementation "androidx.test:runner:1.6.2"
+  androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 }
+
+
+// tasks.withType(Test) {enabled = false}
 
 apply from: 'capacitor.build.gradle'
